@@ -38,7 +38,6 @@ function limpaInput() {
 
 function criaSpan() {
     const span = document.createElement('span');
-    span.setAttribute('class', 'nome-tarefa');
     span.setAttribute('contenteditable', true);
     return span;
 }
@@ -69,8 +68,16 @@ document.addEventListener('click', function(e) {
     }
 });
 
-const text = tarefas.querySelector('li > span');
-console.log(text);
+document.addEventListener('change', function(e) {
+    const el = e.target;
+    const text = tarefas.querySelector('li > span');
+
+    if(el.checked) { 
+        text.setAttribute('class', 'task-done');
+    } else {
+        text.removeAttribute('class', 'tesk-done');
+    }
+});
 
 function salvarTarefas() {
     const liTarefas = tarefas.querySelectorAll('li');
