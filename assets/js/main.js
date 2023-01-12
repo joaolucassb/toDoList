@@ -1,6 +1,5 @@
 function main() {
 
-
 const inputTarefa = document.querySelector('.input-tarefa');
 const btnTarefa = document.querySelector('.btn-tarefa');
 const tarefas = document.querySelector('.tarefas');
@@ -18,12 +17,18 @@ inputTarefa.addEventListener('keypress', function(e) {
 });
 
 function criaBotaoApagar(li) {
-    li.innerText += ' ';
     const botaoApagar = document.createElement('button');
     botaoApagar.innerText = 'Delete';
     botaoApagar.setAttribute('class', 'apagar');
     botaoApagar.setAttribute('title', 'Delete this task')
-    li.appendChild(botaoApagar);
+    li.insertAdjacentElement('beforeend', botaoApagar);
+}
+
+function criaBotaoDone(li) {
+    const btnDone = document.createElement('input');
+    btnDone.setAttribute('type', 'checkbox');
+    btnDone.setAttribute('class', 'btn-done');
+    li.insertAdjacentElement('afterbegin', btnDone);
 }
 
 function limpaInput() {
@@ -31,11 +36,21 @@ function limpaInput() {
     inputTarefa.focus();
 }
 
+function criaSpan() {
+    const span = document.createElement('span');
+    span.setAttribute('class', 'nome-tarefa');
+    span.setAttribute('contenteditable', true);
+    return span;
+}
+
 function criaTarefa(textoInput) {
     const li = criaLi();
-    li.innerHTML = textoInput;
+    const span = criaSpan();
+    span.innerText = textoInput;
+    li.appendChild(span);
     tarefas.appendChild(li);
     limpaInput();
+    criaBotaoDone(li);
     criaBotaoApagar(li);
     salvarTarefas();
 }
@@ -53,6 +68,9 @@ document.addEventListener('click', function(e) {
         salvarTarefas();
     }
 });
+
+const text = tarefas.querySelector('li > span');
+console.log(text);
 
 function salvarTarefas() {
     const liTarefas = tarefas.querySelectorAll('li');

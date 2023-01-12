@@ -27,34 +27,10 @@ body {
     border-radius: 10px;
 }
 
-form input, form label, form button {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
+.tarefas {
+    list-style-type: none;
 }
 
-form input {
-    font-size: 24px;
-    height: 50px;
-    padding: 0 20px;
-}
-
-form input:focus {
-    outline: 1px solid var(--primary-color);
-}
-
-form button {
-    border: none;
-    background: var(--primary-color);
-    color: #fff;
-    font-size: 18px;
-    font-weight: 700;
-    height: 50px;
-    cursor: pointer;
-    margin-top: 30px;
-    border-radius: 5px;
-}
-
-form button:hover {
-    background: var(--primary-color-darker);
+.task-done {
+    text-decoration: line-through;
 }
