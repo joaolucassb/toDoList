@@ -69,6 +69,19 @@ document.addEventListener('click', function(e) {
     }
 });
 
+document.addEventListener('change', function(e) {
+    const btn = e.target;
+    const el = btn.nextSibling;
+
+    if(btn.checked) {
+            el.classList.add('task-done');
+            salvarTarefas();
+        } else {
+            el.classList.remove('task-done');
+            salvarTarefas();
+        }
+});
+
 function salvarTarefas() {
     const liTarefas = tarefas.querySelectorAll('li');
     const listaDeTarefas = [];
