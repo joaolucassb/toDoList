@@ -76,37 +76,53 @@ document.addEventListener('change', function(e) {
     if(btn.checked) {
             el.classList.add('task-done');
             salvarTarefas();
+            salvarChecked();
         } else {
             el.classList.remove('task-done');
             salvarTarefas();
+            salvarChecked();
         }
 });
 
-function salvarTarefas() {
-    const liTarefas = tarefas.querySelectorAll('li');
-    const listaDeTarefas = [];
+function salvarChecked() {
+    const btnsChange = tarefas.querySelectorAll('input');
+    const listaDeBtns = [];
 
-    for(let tarefa of liTarefas) {
-        let tarefaTexto = tarefa.innerText;
-        tarefaTexto = tarefaTexto.replace('Delete', '').trim();
-        listaDeTarefas.push(tarefaTexto);
+    for(let btn of btnsChange) {
+        let checkeds = btn.checked;
+        listaDeBtns.push(checkeds);
     }
 
+    const checkedJSON = JSON.stringify(listaDeBtns);
+    localStorage.setItem('checked', checkedJSON);
+}
+
+function salvarTarefas() {
+    const ulTarefas = document.querySelector('.tarefas');
+    const listaDeTarefas = [];
+    let tarefaHTML = ulTarefas.innerHTML;
+    listaDeTarefas.push(tarefaHTML);
     const tarefasJSON = JSON.stringify(listaDeTarefas);
     localStorage.setItem('tarefas', tarefasJSON);
 }
 
+
 function adicionaTarefasSalvas() {
     const tarefas = localStorage.getItem('tarefas');
     const listaDeTarefas = JSON.parse(tarefas);
+    const ulTarefas = document.querySelector('.tarefas');
+    ulTarefas.innerHTML = listaDeTarefas;
+
+    const btnsChecked = localStorage.getItem('checked');
+    const checkedList = JSON.parse(btnsChecked);
+    const checkboxInput = document.querySelectorAll('.btn-done');
     
-    for (let tarefa of listaDeTarefas) {
-        criaTarefa(tarefa);
+    for(let btn of checkboxInput) {
+        btn.checked = checkedList.shift();
     }
 }
 
 adicionaTarefasSalvas();
-
 }
 
 main();
