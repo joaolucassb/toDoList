@@ -16,13 +16,6 @@ inputTarefa.addEventListener('keypress', e => {
     }
 });
 
-tarefas.addEventListener('keypress', e => {
-    const el = e.target;
-    if(e.keyCode === 13) {
-        
-    }
-});
-
 function criaBotaoApagar(li) {
     const botaoApagar = document.createElement('button');
     botaoApagar.innerText = '🗑';
