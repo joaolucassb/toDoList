@@ -9,16 +9,23 @@ function criaLi() {
     return li;
 }
 
-inputTarefa.addEventListener('keypress', function(e) {
+inputTarefa.addEventListener('keypress', e => {
     if(e.keyCode === 13) {
         if (!inputTarefa.value) return;
         criaTarefa(inputTarefa.value);
     }
 });
 
+tarefas.addEventListener('keypress', e => {
+    const el = e.target;
+    if(e.keyCode === 13) {
+        
+    }
+});
+
 function criaBotaoApagar(li) {
     const botaoApagar = document.createElement('button');
-    botaoApagar.innerText = 'Delete';
+    botaoApagar.innerText = '🗑';
     botaoApagar.setAttribute('class', 'apagar');
     botaoApagar.setAttribute('title', 'Delete this task')
     li.insertAdjacentElement('beforeend', botaoApagar);
