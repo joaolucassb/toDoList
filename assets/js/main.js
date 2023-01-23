@@ -18,7 +18,7 @@ inputTarefa.addEventListener('keypress', e => {
 
 function criaBotaoApagar(li) {
     const botaoApagar = document.createElement('button');
-    botaoApagar.innerText = '🗑';
+    botaoApagar.innerText = 'Delete';
     botaoApagar.setAttribute('class', 'apagar');
     botaoApagar.setAttribute('title', 'Delete this task')
     li.insertAdjacentElement('beforeend', botaoApagar);
